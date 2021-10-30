@@ -4,24 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="createWatchDogViewModel"
+            type="com.udacity.project5.watchdog.createwatchdogscreen.CreateWatchDogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="16dp"
         tools:context=".createwatchdogscreen.CreateWatchDogFragment">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Hello"
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:text="@string/create_new_watch_dog_title"
+            android:textAlignment="center"
+            android:textSize="48sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <NumberPicker
+            android:id="@+id/minutes_number_picker"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:theme="@style/NumberPickerTheme"
+            app:layout_constraintBottom_toTopOf="@+id/create_watch_dog_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setDividerColor="@{@color/white}" />
+
+        <Button
+            android:id="@+id/create_watch_dog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/violet"
+            android:text="@string/create"
+            app:layout_constraintBottom_toTopOf="@+id/title_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/minutes_spinner_indicator_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:text="@string/minutes"
+            android:textColor="#68A8A8A8"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/minutes_number_picker"
+            app:layout_constraintStart_toStartOf="@+id/minutes_number_picker"
+            app:layout_constraintTop_toBottomOf="@+id/minutes_number_picker" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
