@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/createWatchDogFragment">
+
+    <fragment
+        android:id="@+id/createWatchDogFragment"
+        android:name="com.udacity.project5.watchdog.createwatchdogscreen.CreateWatchDogFragment"
+        android:label="CreateWatchDogFragment" >
+        <action
+            android:id="@+id/action_createWatchDogFragment_to_runWatchDogFragment"
+            app:destination="@id/runWatchDogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/runWatchDogFragment"
+        android:name="com.udacity.project5.watchdog.runwatchdogscreen.RunWatchDogFragment"
+        android:label="RunWatchDogFragment" />
+</navigation>
