@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.udacity.project5.watchdog.databinding.CreateWatchDogFragmentBinding
 
 class CreateWatchDogFragment : Fragment() {
@@ -22,12 +23,23 @@ class CreateWatchDogFragment : Fragment() {
         binding = CreateWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
+        binding.createWatchDogViewModel = viewModel
+
         // Setup Number Picker
         binding.minutesNumberPicker.minValue = 1
         binding.minutesNumberPicker.maxValue = 60
         binding.minutesNumberPicker.value = timerIntervalMinutesAmount
         binding.minutesNumberPicker.setOnValueChangedListener { _, _, newVal ->
             timerIntervalMinutesAmount = newVal
+        }
+
+        // On create click listener
+        binding.createWatchDogButton.setOnClickListener {
+            findNavController().navigate(
+                CreateWatchDogFragmentDirections.actionCreateWatchDogFragmentToRunWatchDogFragment(
+                    timerIntervalMinutesAmount
+                )
+            )
         }
 
         return binding.root
