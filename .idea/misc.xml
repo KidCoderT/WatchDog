@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/drawable/circle_shape.xml" value="0.23796296296296296" />
+        <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/drawable/circular_progress_bar.xml" value="0.23796296296296296" />
         <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/layout/create_dog_screen_fragment.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/layout/create_watch_dog_fragment.xml" value="0.25" />
-        <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/layout/run_watch_dog_fragment.xml" value="0.1697061803444782" />
+        <entry key="..\:/Users/tejas/Desktop/WatchDog/app/src/main/res/layout/run_watch_dog_fragment.xml" value="0.33" />
       </map>
     </option>
   </component>

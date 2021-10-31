@@ -34,6 +34,7 @@
             android:id="@+id/minutes_number_picker"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:descendantFocusability="blocksDescendants"
             android:scaleX="2"
             android:scaleY="2"
