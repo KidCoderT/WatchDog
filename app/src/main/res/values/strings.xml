@@ -3,4 +3,6 @@
     <string name="create_new_watch_dog_title">Create New Watch Dog!</string>
     <string name="create">Create</string>
     <string name="minutes">min</string>
+    <string name="times_rang">Times Rang: %d</string>
+    <string name="run_that_dog">Run That Dog!</string>
 </resources>
