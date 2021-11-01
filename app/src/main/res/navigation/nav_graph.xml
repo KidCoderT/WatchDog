@@ -10,7 +10,9 @@
         android:label="CreateWatchDogFragment" >
         <action
             android:id="@+id/action_createWatchDogFragment_to_runWatchDogFragment"
-            app:destination="@id/runWatchDogFragment" />
+            app:destination="@id/runWatchDogFragment"
+            app:popUpTo="@id/createWatchDogFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/runWatchDogFragment"
@@ -19,5 +21,8 @@
         <argument
             android:name="minutes"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_runWatchDogFragment_to_createWatchDogFragment"
+            app:destination="@id/createWatchDogFragment" />
     </fragment>
 </navigation>
