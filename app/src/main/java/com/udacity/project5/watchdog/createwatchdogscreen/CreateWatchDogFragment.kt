@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.udacity.project5.watchdog.databinding.CreateWatchDogFragmentBinding
+import com.udacity.project5.watchdog.utils.PrefUtil
 
 class CreateWatchDogFragment : Fragment() {
 
@@ -35,10 +36,11 @@ class CreateWatchDogFragment : Fragment() {
 
         // On create click listener
         binding.createWatchDogButton.setOnClickListener {
+            // Send minutes selected as seconds
+            PrefUtil.setPreviousTimerLengthSeconds((timerIntervalMinutesAmount * 60).toLong(), requireContext())
+            // navigate to runWatchDogsReminderFragment
             findNavController().navigate(
-                CreateWatchDogFragmentDirections.actionCreateWatchDogFragmentToRunWatchDogFragment(
-                    timerIntervalMinutesAmount
-                )
+                CreateWatchDogFragmentDirections.actionCreateWatchDogFragmentToRunWatchDogFragment()
             )
         }
 

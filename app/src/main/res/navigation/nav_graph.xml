@@ -15,9 +15,5 @@
     <fragment
         android:id="@+id/runWatchDogFragment"
         android:name="com.udacity.project5.watchdog.runwatchdogscreen.RunWatchDogFragment"
-        android:label="RunWatchDogFragment" >
-        <argument
-            android:name="minutes"
-            app:argType="integer" />
-    </fragment>
+        android:label="RunWatchDogFragment" />
 </navigation>
