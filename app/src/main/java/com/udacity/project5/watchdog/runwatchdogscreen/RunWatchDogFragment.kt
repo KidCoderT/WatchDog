@@ -12,6 +12,10 @@ import com.udacity.project5.watchdog.databinding.RunWatchDogFragmentBinding
 
 class RunWatchDogFragment : Fragment() {
 
+    // TODO: Add counting for number of times reminder finished
+    // TODO: Add notification or indication for when 1 reminder done
+    // TODO: Hide and show fab buttons based on different timer states
+
     private lateinit var binding: RunWatchDogFragmentBinding
     private val viewModel: RunWatchDogViewModel by viewModels()
 
