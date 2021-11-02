@@ -5,4 +5,6 @@
     <string name="minutes">min</string>
     <string name="times_rang">Times Rang: %d</string>
     <string name="run_that_dog">Run That Dog!</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
 </resources>

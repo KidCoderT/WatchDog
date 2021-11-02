@@ -1,5 +1,7 @@
 package com.udacity.project5.watchdog.runwatchdogscreen
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -7,28 +9,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.udacity.project5.watchdog.R
 import com.udacity.project5.watchdog.databinding.RunWatchDogFragmentBinding
 
 class RunWatchDogFragment : Fragment() {
 
-    // TODO 1: Make most variables into viewModel liveData's
-    // TODO 2: Add counting for number of times reminder finished
-    // TODO 3: Hide and show fab buttons based on different timer states
-    // TODO 4: Add notification or indication for when 1 reminder done
+    // TODO: Add notification or indication for when 1 reminder done
 
     private lateinit var binding: RunWatchDogFragmentBinding
     private val viewModel: RunWatchDogViewModel by viewModels()
 
+    var secondsRemaining: Long = 0
+
     private lateinit var timer: CountDownTimer
-    private var timerLengthSeconds: Long = 0
-    private var secondsRemaining: Long = 0
-
-    enum class TimerState {
-        Stopped, Paused, Running
-    }
-
-    private var timerState = TimerState.Stopped
 
     val args: RunWatchDogFragmentArgs by navArgs()
 
@@ -39,10 +35,36 @@ class RunWatchDogFragment : Fragment() {
         binding = RunWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        timerLengthSeconds = (args.minutes * 60).toLong()
-        secondsRemaining = timerLengthSeconds
+        viewModel.setTimerLength(args.minutes)
+        secondsRemaining = viewModel.timerLengthSeconds.value!!
 
-        binding.progressCountdown.max = timerLengthSeconds.toInt()
+        binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
+
+        binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
+
+        binding.fabStop.setOnClickListener { _ ->
+            viewModel.setTimerState(TimerState.Stopped)
+            resetTimer()
+            val alertDialog: AlertDialog? = activity?.let {
+                val builder = AlertDialog.Builder(it)
+                builder.setTitle("Do you want to stop this watchDog and exit?")
+                builder.apply {
+                    setPositiveButton(R.string.ok,
+                        DialogInterface.OnClickListener { _, _ ->
+                            findNavController().navigate(
+                                RunWatchDogFragmentDirections.actionRunWatchDogFragmentToCreateWatchDogFragment()
+                            )
+                        })
+                    setNegativeButton(R.string.cancel,
+                        DialogInterface.OnClickListener { _, _ ->
+                            // User cancelled the dialog
+                        })
+                }
+                // Create the AlertDialog
+                builder.create()
+            }
+            alertDialog?.show()
+        }
 
         timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
             override fun onFinish() {
@@ -52,10 +74,6 @@ class RunWatchDogFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 secondsRemaining = millisUntilFinished / 1000
                 updateCountdownUI()
-                binding.fabStop.setOnClickListener { _ ->
-                    timerState = TimerState.Stopped
-                    resetTimer()
-                }
             }
         }
 
@@ -65,23 +83,45 @@ class RunWatchDogFragment : Fragment() {
 
         binding.fabStart.setOnClickListener {
             timer.start()
-            timerState = TimerState.Running
+            viewModel.setTimerState(TimerState.Running)
         }
 
         binding.fabPause.setOnClickListener {
             timer.cancel()
-            timerState = TimerState.Paused
+            viewModel.setTimerState(TimerState.Paused)
             updateCountdownUI()
         }
+
+        viewModel.timerState.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                TimerState.Running -> {
+                    binding.fabStart.visibility = View.GONE
+                    binding.fabPause.visibility = View.VISIBLE
+                    binding.fabStop.visibility = View.VISIBLE
+                }
+                TimerState.Paused -> {
+                    binding.fabStart.visibility = View.VISIBLE
+                    binding.fabPause.visibility = View.GONE
+                    binding.fabStop.visibility = View.VISIBLE
+                }
+                TimerState.Stopped -> {
+                    binding.fabStart.visibility = View.VISIBLE
+                    binding.fabPause.visibility = View.GONE
+                    binding.fabStop.visibility = View.GONE
+                }
+            }
+        })
 
         return binding.root
     }
 
     private fun resetTimer(continueTimer: Boolean = false) {
         timer.cancel()
-        secondsRemaining = timerLengthSeconds
+        secondsRemaining = viewModel.timerLengthSeconds.value!!
         updateCountdownUI()
         if (continueTimer) {
+            viewModel.incrementTimesRang()
+            binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
             continueTimer()
         }
     }
