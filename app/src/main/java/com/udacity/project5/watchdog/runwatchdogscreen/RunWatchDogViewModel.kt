@@ -31,7 +31,7 @@ class RunWatchDogViewModel : ViewModel() {
         _timerState.value = newState
     }
 
-    fun setTimerLength(timeInMinutes: Int) {
+    fun setupTimerLengthAndCountdownSeconds(timeInMinutes: Int) {
         _timerLengthSeconds.value = timeInMinutes * 60L
     }
 

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.udacity.project5.watchdog.runwatchdogscreen.RunWatchDogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,7 +105,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/love_ya_like_a_sister"
-            android:text="@{@string/times_rang(5)}"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

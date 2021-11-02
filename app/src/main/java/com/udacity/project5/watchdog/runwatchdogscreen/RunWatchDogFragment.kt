@@ -35,12 +35,12 @@ class RunWatchDogFragment : Fragment() {
         binding = RunWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        viewModel.setTimerLength(args.minutes)
+        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes)
         secondsRemaining = viewModel.timerLengthSeconds.value!!
 
         binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
 
-        binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
+        binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value.toString())
 
         binding.fabStop.setOnClickListener { _ ->
             viewModel.setTimerState(TimerState.Stopped)
@@ -66,23 +66,12 @@ class RunWatchDogFragment : Fragment() {
             alertDialog?.show()
         }
 
-        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
-            override fun onFinish() {
-                resetTimer(true)
-            }
-
-            override fun onTick(millisUntilFinished: Long) {
-                secondsRemaining = millisUntilFinished / 1000
-                updateCountdownUI()
-            }
-        }
-
-        resetTimer()
-
+        secondsRemaining = viewModel.timerLengthSeconds.value!!
         updateCountdownUI()
+        binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
 
         binding.fabStart.setOnClickListener {
-            timer.start()
+            startTimer()
             viewModel.setTimerState(TimerState.Running)
         }
 
@@ -113,6 +102,21 @@ class RunWatchDogFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    private fun startTimer(){
+        viewModel.setTimerState(TimerState.Running)
+
+        timer = object : CountDownTimer(secondsRemaining*1000L, 1000) {
+            override fun onFinish() {
+                resetTimer(true)
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                secondsRemaining = millisUntilFinished / 1000
+                updateCountdownUI()
+            }
+        }.start()
     }
 
     private fun resetTimer(continueTimer: Boolean = false) {
