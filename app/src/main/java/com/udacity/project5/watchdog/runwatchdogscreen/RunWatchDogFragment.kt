@@ -2,6 +2,7 @@ package com.udacity.project5.watchdog.runwatchdogscreen
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -40,31 +41,7 @@ class RunWatchDogFragment : Fragment() {
 
         binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
 
-        binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value.toString())
-
-        binding.fabStop.setOnClickListener { _ ->
-            viewModel.setTimerState(TimerState.Stopped)
-            resetTimer()
-            val alertDialog: AlertDialog? = activity?.let {
-                val builder = AlertDialog.Builder(it)
-                builder.setTitle("Do you want to stop this watchDog and exit?")
-                builder.apply {
-                    setPositiveButton(R.string.ok,
-                        DialogInterface.OnClickListener { _, _ ->
-                            findNavController().navigate(
-                                RunWatchDogFragmentDirections.actionRunWatchDogFragmentToCreateWatchDogFragment()
-                            )
-                        })
-                    setNegativeButton(R.string.cancel,
-                        DialogInterface.OnClickListener { _, _ ->
-                            // User cancelled the dialog
-                        })
-                }
-                // Create the AlertDialog
-                builder.create()
-            }
-            alertDialog?.show()
-        }
+        binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
 
         secondsRemaining = viewModel.timerLengthSeconds.value!!
         updateCountdownUI()
@@ -81,22 +58,50 @@ class RunWatchDogFragment : Fragment() {
             updateCountdownUI()
         }
 
+        binding.fabDone.setOnClickListener { _ ->
+            viewModel.setTimerState(TimerState.Stopped)
+            timer.cancel()
+            viewModel.setTimerState(TimerState.Paused)
+            updateCountdownUI()
+            val alertDialog: AlertDialog? = activity?.let {
+                val builder = AlertDialog.Builder(it, R.style.AlertDialogCustomTheme)
+                builder.setTitle("ARE YOU DONE WITH THE BREAK?")
+                builder.apply {
+                    setPositiveButton(R.string.ok,
+                        DialogInterface.OnClickListener { _, _ ->
+                            findNavController().navigate(
+                                RunWatchDogFragmentDirections.actionRunWatchDogFragmentToCreateWatchDogFragment()
+                            )
+                        })
+                    setNegativeButton(R.string.cancel,
+                        DialogInterface.OnClickListener { _, _ ->
+                            // Continue timer
+                            startTimer()
+                        })
+                    setMessage("Are you done with this watchDog and stopped the disruptive activity and gotten up from there? (PLEASE DON'T LIE as it doest make you smarter just more of a time waster!)")
+                }
+                // Create the AlertDialog
+                builder.create()
+            }
+            alertDialog?.show()
+        }
+
         viewModel.timerState.observe(viewLifecycleOwner, Observer {
             when (it) {
                 TimerState.Running -> {
                     binding.fabStart.visibility = View.GONE
                     binding.fabPause.visibility = View.VISIBLE
-                    binding.fabStop.visibility = View.VISIBLE
+                    binding.fabDone.visibility = View.VISIBLE
                 }
                 TimerState.Paused -> {
                     binding.fabStart.visibility = View.VISIBLE
                     binding.fabPause.visibility = View.GONE
-                    binding.fabStop.visibility = View.VISIBLE
+                    binding.fabDone.visibility = View.VISIBLE
                 }
                 TimerState.Stopped -> {
                     binding.fabStart.visibility = View.VISIBLE
                     binding.fabPause.visibility = View.GONE
-                    binding.fabStop.visibility = View.GONE
+                    binding.fabDone.visibility = View.GONE
                 }
             }
         })
@@ -104,11 +109,16 @@ class RunWatchDogFragment : Fragment() {
         return binding.root
     }
 
-    private fun startTimer(){
+    private fun startTimer() {
         viewModel.setTimerState(TimerState.Running)
 
-        timer = object : CountDownTimer(secondsRemaining*1000L, 1000) {
+        timer = object : CountDownTimer(secondsRemaining * 1000L, 1000) {
             override fun onFinish() {
+                // Play sound effect
+                val dingSoundEffect: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.ding_sound_effect)
+                dingSoundEffect.setVolume(1000F, 1000F)
+                dingSoundEffect.start()
+                // Show notification
                 resetTimer(true)
             }
 

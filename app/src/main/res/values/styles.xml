@@ -12,4 +12,12 @@
     <style name="NumberPickerTheme" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="android:textColorPrimary">@android:color/white</item>
     </style>
+
+    <style name="AlertDialogCustomTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:textColor">#FFF</item>
+        <item name="android:color">#FFF</item>
+        <item name="textFillColor">#FFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:colorAccent">#000000</item>
+    </style>
 </resources>

@@ -20,7 +20,7 @@
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/love_ya_like_a_sister"
             android:text="@string/run_that_dog"
             android:textAlignment="center"
@@ -28,7 +28,8 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/times_rang_text" />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/progress_countdown"
@@ -67,14 +68,14 @@
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintBottom_toTopOf="@+id/title_text"
-            app:layout_constraintEnd_toStartOf="@+id/fab_stop"
+            app:layout_constraintEnd_toStartOf="@+id/fab_done"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/times_rang_text"
             app:srcCompat="@drawable/ic_play_arrow" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_stop"
+            android:id="@+id/fab_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -84,7 +85,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/fab_start"
             app:layout_constraintTop_toBottomOf="@+id/times_rang_text"
-            app:srcCompat="@drawable/ic_stop" />
+            app:srcCompat="@drawable/ic_check" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_pause"
@@ -95,7 +96,7 @@
             app:layout_constraintBottom_toTopOf="@+id/title_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/fab_stop"
+            app:layout_constraintStart_toEndOf="@+id/fab_done"
             app:layout_constraintTop_toBottomOf="@+id/times_rang_text"
             app:srcCompat="@drawable/ic_pause" />
 
