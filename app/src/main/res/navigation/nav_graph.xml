@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/createWatchDogFragment">
+    app:startDestination="@id/watchDogsGridListFragment">
 
     <fragment
         android:id="@+id/createWatchDogFragment"
@@ -11,8 +11,8 @@
         <action
             android:id="@+id/action_createWatchDogFragment_to_runWatchDogFragment"
             app:destination="@id/runWatchDogFragment"
-            app:popUpTo="@id/createWatchDogFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/watchDogsGridListFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/runWatchDogFragment"
@@ -22,7 +22,15 @@
             android:name="minutes"
             app:argType="integer" />
         <action
-            android:id="@+id/action_runWatchDogFragment_to_createWatchDogFragment"
+            android:id="@+id/action_runWatchDogFragment_to_watchDogsGridListFragment"
+            app:destination="@id/watchDogsGridListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchDogsGridListFragment"
+        android:name="com.udacity.project5.watchdog.main.WatchDogsGridListFragment"
+        android:label="WatchDogsGridListFragment" >
+        <action
+            android:id="@+id/action_watchDogsGridListFragment_to_createWatchDogFragment"
             app:destination="@id/createWatchDogFragment" />
     </fragment>
 </navigation>

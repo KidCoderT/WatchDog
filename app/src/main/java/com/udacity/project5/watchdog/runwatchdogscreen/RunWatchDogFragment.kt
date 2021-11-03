@@ -70,7 +70,7 @@ class RunWatchDogFragment : Fragment() {
                     setPositiveButton(R.string.ok,
                         DialogInterface.OnClickListener { _, _ ->
                             findNavController().navigate(
-                                RunWatchDogFragmentDirections.actionRunWatchDogFragmentToCreateWatchDogFragment()
+                                RunWatchDogFragmentDirections.actionRunWatchDogFragmentToWatchDogsGridListFragment()
                             )
                         })
                     setNegativeButton(R.string.cancel,

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="createWatchDogViewModel"
             type="com.udacity.project5.watchdog.createwatchdogscreen.CreateWatchDogViewModel" />
@@ -18,14 +19,11 @@
 
         <TextView
             android:id="@+id/title_text"
+            style="@style/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:fontFamily="@font/love_ya_like_a_sister"
             android:text="@string/create_new_watch_dog_title"
-            android:textAlignment="center"
-            android:textSize="48sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
