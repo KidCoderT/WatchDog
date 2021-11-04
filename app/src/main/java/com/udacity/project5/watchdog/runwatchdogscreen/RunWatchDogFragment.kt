@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.project5.watchdog.R
 import com.udacity.project5.watchdog.databinding.RunWatchDogFragmentBinding
+import com.udacity.project5.watchdog.utils.sendNotification
 
 class RunWatchDogFragment : Fragment() {
 
@@ -135,6 +136,7 @@ class RunWatchDogFragment : Fragment() {
         updateCountdownUI()
         if (continueTimer) {
             viewModel.incrementTimesRang()
+            sendNotification(requireContext(), viewModel.timesRang.value!!)
             binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
             continueTimer()
         }
