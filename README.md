@@ -6,6 +6,10 @@
 
 ## Main Implements
 <pre>
+- Has 3 screens for navigation
+  - WatchDogsGridList Screen
+  - CreateWatchDog Screen
+  - RunWatchDog Screen
 - Has a database for saving and retrieving watchdogs                                                -3
 - Has a recycler view that shows all the data from database                                         -4
 - Can
