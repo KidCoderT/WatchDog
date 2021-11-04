@@ -67,7 +67,10 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red_pink"
             android:drawableLeft="@drawable/ic_alarm_add_24"
+            android:paddingHorizontal="60dp"
+            android:paddingVertical="16dp"
             android:text="Create Watch Dog"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

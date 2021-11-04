@@ -29,14 +29,14 @@ fun sendNotification(context: Context, timesRung: Int) {
     notificationManager.createNotificationChannel(channel)
 
     val intent = MainActivity.newIntent(context.applicationContext)
-        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP  or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
 
-    // create a pending intent that opens ReminderDescriptionActivity when the user clicks on the notification
-    val stackBuilder = TaskStackBuilder.create(context)
-        .addParentStack(MainActivity::class.java)
-        .addNextIntent(intent)
-    val notificationPendingIntent = stackBuilder
-        .getPendingIntent(getUniqueId(), PendingIntent.FLAG_UPDATE_CURRENT)
+    // create a pending intent that opens Main Activity when the user clicks on the notification
+    val notificationPendingIntent = PendingIntent.getActivity(
+        context,
+        getUniqueId(), intent, PendingIntent.FLAG_UPDATE_CURRENT or
+                PendingIntent.FLAG_IMMUTABLE
+    )
 
     // build the notification object with the data to be shown
     val notification = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
