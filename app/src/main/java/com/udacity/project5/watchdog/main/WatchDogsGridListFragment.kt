@@ -20,7 +20,7 @@ class WatchDogsGridListFragment : Fragment() {
         binding = WatchDogsGridListFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        binding.fabCreateNewWatchDog.setOnClickListener {
+        binding.createNewWatchDogBtn.setOnClickListener {
             findNavController().navigate(
                 WatchDogsGridListFragmentDirections.actionWatchDogsGridListFragmentToCreateWatchDogFragment()
             )

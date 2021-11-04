@@ -37,7 +37,8 @@ class RunWatchDogFragment : Fragment() {
         binding = RunWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes)
+//        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes)
+        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes, testing=true)
         secondsRemaining = viewModel.timerLengthSeconds.value!!
 
         binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
