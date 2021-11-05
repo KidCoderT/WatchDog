@@ -9,22 +9,23 @@
             type="com.udacity.project5.watchdog.runwatchdogscreen.RunWatchDogViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
+        app:layoutDescription="@xml/motion_layout_scene"
         tools:context=".runwatchdogscreen.RunWatchDogFragment">
 
         <TextView
             android:id="@+id/title_text"
+            style="@style/title_text"
             android:layout_marginTop="64dp"
             android:text="@string/run_that_dog"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/times_rang_text"
-            style="@style/title_text" />
+            app:layout_constraintTop_toBottomOf="@+id/times_rang_text" />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/progress_countdown"
@@ -121,5 +122,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_countdown"
             tools:text="Watch Dog Name" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

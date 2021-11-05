@@ -35,6 +35,8 @@ class RunWatchDogFragment : Fragment() {
         viewModel.setupTimerLengthAndCountdownSeconds(args.minutes, testing = false)
         secondsRemaining = viewModel.timerLengthSeconds.value!!
 
+        viewModel.setTimerState(TimerState.Stopped)
+
         binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
 
         binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
