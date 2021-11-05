@@ -5,18 +5,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.udacity.project5.watchdog.data.dto.WatchDogsDTO
+import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 
 @Dao
 interface WatchDogsDao {
     @Query("SELECT * FROM watch_dogs")
-    suspend fun getAllDogs(): LiveData<List<WatchDogsDTO>>
+    suspend fun getAllDogs(): LiveData<List<WatchDogsDataItem>>
 
-    @Query("SELECT * FROM watch_dogs where dog_id = :dogId")
-    suspend fun getDogById(dogId: String): WatchDogsDTO?
+    @Query("SELECT * FROM watch_dogs WHERE dog_id = :dogId")
+    suspend fun getDogById(dogId: String): WatchDogsDataItem?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveDog(dog: WatchDogsDTO)
+    suspend fun saveDog(dog: WatchDogsDataItem)
 
     @Query("DELETE FROM watch_dogs")
     suspend fun deleteAllDogs()

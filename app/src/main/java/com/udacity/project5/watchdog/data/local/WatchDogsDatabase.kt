@@ -1,12 +1,12 @@
 package com.udacity.project5.watchdog.data.local
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.udacity.project5.watchdog.data.dto.WatchDogsDTO
+import androidx.room.*
+import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
+import java.time.LocalDateTime
+import java.util.*
 
-@Database(entities = [WatchDogsDTO::class], version = 1, exportSchema = false)
+@Database(entities = [WatchDogsDataItem::class], version = 3, exportSchema = false)
 abstract class WatchDogsDatabase : RoomDatabase() {
 
     abstract fun watchDogsDao(): WatchDogsDao
@@ -32,3 +32,4 @@ abstract class WatchDogsDatabase : RoomDatabase() {
         }
     }
 }
+

@@ -14,20 +14,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.project5.watchdog.R
+import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 import com.udacity.project5.watchdog.databinding.RunWatchDogFragmentBinding
 import com.udacity.project5.watchdog.utils.sendNotification
 
 class RunWatchDogFragment : Fragment() {
-
-    // TODO: Add notification or indication for when 1 reminder done
-
     private lateinit var binding: RunWatchDogFragmentBinding
     private val viewModel: RunWatchDogViewModel by viewModels()
-
     var secondsRemaining: Long = 0
-
     private lateinit var timer: CountDownTimer
-
     val args: RunWatchDogFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -37,8 +32,7 @@ class RunWatchDogFragment : Fragment() {
         binding = RunWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-//        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes)
-        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes, testing=true)
+        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes, testing=false)
         secondsRemaining = viewModel.timerLengthSeconds.value!!
 
         binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
