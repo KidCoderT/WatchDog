@@ -47,7 +47,7 @@
             android:id="@+id/create_watch_dog_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@color/violet"
             android:text="@string/create"
             app:layout_constraintBottom_toTopOf="@+id/title_text"

@@ -11,6 +11,8 @@
         <action
             android:id="@+id/action_createWatchDogFragment_to_runWatchDogFragment"
             app:destination="@id/runWatchDogFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@id/watchDogsGridListFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -24,6 +26,7 @@
         <action
             android:id="@+id/action_runWatchDogFragment_to_watchDogsGridListFragment"
             app:destination="@id/watchDogsGridListFragment"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/runWatchDogFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -36,6 +39,8 @@
         android:label="WatchDogsGridListFragment" >
         <action
             android:id="@+id/action_watchDogsGridListFragment_to_createWatchDogFragment"
-            app:destination="@id/createWatchDogFragment" />
+            app:destination="@id/createWatchDogFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 </navigation>
