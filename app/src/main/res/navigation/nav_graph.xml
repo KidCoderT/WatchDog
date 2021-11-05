@@ -26,6 +26,9 @@
             app:destination="@id/watchDogsGridListFragment"
             app:popUpTo="@id/runWatchDogFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="watchDogName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/watchDogsGridListFragment"

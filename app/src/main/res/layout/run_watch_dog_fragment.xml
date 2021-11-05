@@ -32,16 +32,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
             android:minWidth="320dp"
             android:minHeight="320dp"
-            tools:progress="5"
             android:scaleX="1.2"
             android:scaleY="1.2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="5" />
 
         <TextView
             android:id="@+id/timer_countdown_text"
@@ -104,7 +104,22 @@
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progress_countdown"
+            app:layout_constraintTop_toBottomOf="@+id/watch_dog_name_text"
             tools:text="Times Rang: 5" />
+
+        <TextView
+            android:id="@+id/watch_dog_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="29sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_countdown"
+            tools:text="Watch Dog Name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

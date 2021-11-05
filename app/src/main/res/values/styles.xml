@@ -29,4 +29,10 @@
         <item name="android:textSize">48sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="editTextStyling">
+        <item name="android:background">@drawable/round_border</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

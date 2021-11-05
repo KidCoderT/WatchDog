@@ -8,4 +8,5 @@
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
     <string name="timer_period">timer period: %d min</string>
+    <string name="enter_name">Watch Dog Name!</string>
 </resources>

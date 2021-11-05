@@ -13,9 +13,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
         android:background="@drawable/my_rounded_bg"
         android:orientation="vertical"
-        android:layout_marginHorizontal="4dp"
         android:padding="8dp">
 
         <TextView
@@ -37,14 +37,12 @@
             parseDate="@{dog.dateOfCreation}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:fontFamily="@font/love_ya_like_a_sister"
-            android:textColor="#68A8A8A8"
+            android:textColor="#B0FFFFFF"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/times_rang_text"
+            app:layout_constraintTop_toBottomOf="@+id/watch_dog_name_text"
             tools:text="Nov 4, 2021" />
 
         <TextView
@@ -58,5 +56,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_of_creation_text" />
+
+        <TextView
+            android:id="@+id/watch_dog_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:text="@{dog.dogName}"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/times_rang_text"
+            tools:text="Watch Dog Name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

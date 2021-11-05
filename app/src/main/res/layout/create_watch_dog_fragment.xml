@@ -22,7 +22,7 @@
             style="@style/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/create_new_watch_dog_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,13 +32,13 @@
             android:id="@+id/minutes_number_picker"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="108dp"
             android:descendantFocusability="blocksDescendants"
             android:scaleX="2"
             android:scaleY="2"
             android:theme="@style/NumberPickerTheme"
-            app:layout_constraintBottom_toTopOf="@+id/create_watch_dog_button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setDividerColor="@{@color/white}" />
@@ -47,7 +47,7 @@
             android:id="@+id/create_watch_dog_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/violet"
             android:text="@string/create"
             app:layout_constraintBottom_toTopOf="@+id/title_text"
@@ -66,5 +66,24 @@
             app:layout_constraintEnd_toEndOf="@+id/minutes_number_picker"
             app:layout_constraintStart_toStartOf="@+id/minutes_number_picker"
             app:layout_constraintTop_toBottomOf="@+id/minutes_number_picker" />
+
+        <EditText
+            android:id="@+id/watch_dog_name_field"
+            style="@style/editTextStyling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:autofillHints="name"
+            android:hint="@string/enter_name"
+            android:inputType="textEmailAddress"
+            android:maxLength="18"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/create_watch_dog_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/minutes_spinner_indicator_text" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

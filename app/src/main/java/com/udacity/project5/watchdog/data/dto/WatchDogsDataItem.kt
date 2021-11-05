@@ -10,6 +10,7 @@ import java.util.*
 
 @Entity(tableName = "watch_dogs")
 data class WatchDogsDataItem(
+    @ColumnInfo(name = "dog_name") var dogName: String,
     @ColumnInfo(name = "timer_period") var timerPeriodInMinutes: Int,
     @ColumnInfo(name = "times_rang") var timesTimerRang: Int,
     @ColumnInfo(name = "total_time_in_sec") var totalTimeInSeconds: Long,

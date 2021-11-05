@@ -43,6 +43,8 @@ class RunWatchDogFragment : Fragment() {
         updateCountdownUI()
         binding.timesRangText.text = getString(R.string.times_rang, viewModel.timesRang.value)
 
+        binding.watchDogNameText.text = args.watchDogName
+
         binding.fabStart.setOnClickListener {
             startTimer()
             viewModel.setTimerState(TimerState.Running)
@@ -67,6 +69,7 @@ class RunWatchDogFragment : Fragment() {
                         R.string.ok
                     ) { _, _ ->
                         val newWatchDogsDataItem = WatchDogsDataItem(
+                            args.watchDogName,
                             args.minutes,
                             viewModel.timesRang.value!!,
                             totalTimeTakenInSec()
