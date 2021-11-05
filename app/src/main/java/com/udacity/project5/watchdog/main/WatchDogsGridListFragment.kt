@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.udacity.project5.watchdog.databinding.WatchDogsGridListFragmentBinding
 
 class WatchDogsGridListFragment : Fragment() {
@@ -32,6 +33,18 @@ class WatchDogsGridListFragment : Fragment() {
             Log.i("DataHasChanged", "Here is the newList")
             for (dataItem in it) {
                 Log.i("DataItem", dataItem.toString())
+            }
+        })
+
+        val manager = GridLayoutManager(activity, 4)
+        binding.watchDogsGridListRecyclerView.layoutManager = manager
+
+        val adapter = WatchDogsGridListAdapter()
+        binding.watchDogsGridListRecyclerView.adapter = adapter
+
+        viewModel.allDogs.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
             }
         })
 

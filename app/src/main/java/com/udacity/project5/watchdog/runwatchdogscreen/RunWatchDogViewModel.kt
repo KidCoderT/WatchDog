@@ -1,10 +1,7 @@
 package com.udacity.project5.watchdog.runwatchdogscreen
 
 import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 import com.udacity.project5.watchdog.data.local.WatchDogsDatabase
 import kotlinx.coroutines.launch
@@ -13,7 +10,7 @@ enum class TimerState {
     Stopped, Paused, Running
 }
 
-class RunWatchDogViewModel(application: Application) : ViewModel() {
+class RunWatchDogViewModel(application: Application) : AndroidViewModel(application) {
     private val watchDogsDao = WatchDogsDatabase.getDatabase(application).watchDogsDao()
 
     private val _timerLengthSeconds = MutableLiveData(0L)

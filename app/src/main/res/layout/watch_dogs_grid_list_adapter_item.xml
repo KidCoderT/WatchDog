@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dog"
+            type="com.udacity.project5.watchdog.data.dto.WatchDogsDataItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_rounded_bg"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="4dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/times_rang_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:text="@{Integer.toString(dog.timesTimerRang)}"
+            android:textAllCaps="false"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="6" />
+
+        <TextView
+            android:id="@+id/date_of_creation_text"
+            parseDate="@{dog.dateOfCreation}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:textColor="#68A8A8A8"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/times_rang_text"
+            tools:text="Nov 4, 2021" />
+
+        <TextView
+            android:id="@+id/timer_period_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:text="@{@string/timer_period(dog.timerPeriodInMinutes)}"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_of_creation_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

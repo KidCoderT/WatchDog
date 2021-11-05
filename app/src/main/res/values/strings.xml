@@ -7,4 +7,5 @@
     <string name="run_that_dog">Run That Dog!</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
+    <string name="timer_period">timer period: %d min</string>
 </resources>
