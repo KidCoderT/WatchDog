@@ -10,7 +10,7 @@ import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 @Dao
 interface WatchDogsDao {
     @Query("SELECT * FROM watch_dogs")
-    suspend fun getAllDogs(): LiveData<List<WatchDogsDataItem>>
+    fun getAllDogs(): LiveData<List<WatchDogsDataItem>>
 
     @Query("SELECT * FROM watch_dogs WHERE dog_id = :dogId")
     suspend fun getDogById(dogId: String): WatchDogsDataItem?

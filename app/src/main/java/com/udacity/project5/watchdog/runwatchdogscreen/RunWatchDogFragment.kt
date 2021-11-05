@@ -32,7 +32,7 @@ class RunWatchDogFragment : Fragment() {
         binding = RunWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes, testing=false)
+        viewModel.setupTimerLengthAndCountdownSeconds(args.minutes, testing = false)
         secondsRemaining = viewModel.timerLengthSeconds.value!!
 
         binding.progressCountdown.max = viewModel.timerLengthSeconds.value!!.toInt()
@@ -63,17 +63,27 @@ class RunWatchDogFragment : Fragment() {
                 val builder = AlertDialog.Builder(it, R.style.AlertDialogCustomTheme)
                 builder.setTitle("ARE YOU DONE WITH THE BREAK?")
                 builder.apply {
-                    setPositiveButton(R.string.ok,
-                        DialogInterface.OnClickListener { _, _ ->
-                            findNavController().navigate(
-                                RunWatchDogFragmentDirections.actionRunWatchDogFragmentToWatchDogsGridListFragment()
-                            )
-                        })
-                    setNegativeButton(R.string.cancel,
-                        DialogInterface.OnClickListener { _, _ ->
-                            // Continue timer
-                            startTimer()
-                        })
+                    setPositiveButton(
+                        R.string.ok
+                    ) { _, _ ->
+                        val newWatchDogsDataItem = WatchDogsDataItem(
+                            args.minutes,
+                            viewModel.timesRang.value!!,
+                            totalTimeTakenInSec()
+                        )
+
+                        viewModel.saveWatchDog(newWatchDogsDataItem)
+
+                        findNavController().navigate(
+                            RunWatchDogFragmentDirections.actionRunWatchDogFragmentToWatchDogsGridListFragment()
+                        )
+                    }
+                    setNegativeButton(
+                        R.string.cancel
+                    ) { _, _ ->
+                        // Continue timer
+                        startTimer()
+                    }
                     setMessage("Are you done with this watchDog and stopped the disruptive activity and gotten up from there? (PLEASE DON'T LIE as it doest make you smarter just more of a time waster!)")
                 }
                 // Create the AlertDialog
@@ -105,13 +115,18 @@ class RunWatchDogFragment : Fragment() {
         return binding.root
     }
 
+    private fun totalTimeTakenInSec(): Long {
+        return (args.minutes * 60L * viewModel.timesRang.value!!) + ((args.minutes * 60L) - secondsRemaining)
+    }
+
     private fun startTimer() {
         viewModel.setTimerState(TimerState.Running)
 
         timer = object : CountDownTimer(secondsRemaining * 1000L, 1000) {
             override fun onFinish() {
                 // Play sound effect
-                val dingSoundEffect: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.ding_sound_effect)
+                val dingSoundEffect: MediaPlayer =
+                    MediaPlayer.create(requireContext(), R.raw.ding_sound_effect)
                 dingSoundEffect.setVolume(1000F, 1000F)
                 dingSoundEffect.start()
                 // Show notification
