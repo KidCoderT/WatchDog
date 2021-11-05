@@ -52,7 +52,7 @@
             android:fontFamily="@font/love_ya_like_a_sister"
             android:text="@{@string/timer_period(dog.timerPeriodInMinutes)}"
             android:textAlignment="center"
-            android:textSize="10sp"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_of_creation_text" />
@@ -64,6 +64,8 @@
             android:layout_marginTop="60dp"
             android:fontFamily="@font/love_ya_like_a_sister"
             android:text="@{dog.dogName}"
+            android:maxLines="2"
+            android:lines="2"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textStyle="bold"
