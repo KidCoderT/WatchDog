@@ -9,4 +9,6 @@
     <string name="cancel">CANCEL</string>
     <string name="timer_period">timer period: %d min</string>
     <string name="enter_name">Watch Dog Name!</string>
+    <string name="create_watch_dog">Create Watch Dog</string>
+    <string name="no_dogs">You havent created any watch dogs to monitor the time your wasting.</string>
 </resources>

@@ -21,7 +21,7 @@
             style="@style/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Watch Dogs App"
+            android:text="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +30,8 @@
             android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="2dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,12 +41,10 @@
             android:id="@+id/watch_dogs_grid_list_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:paddingVertical="16dp"
             app:layout_constraintBottom_toTopOf="@+id/motivational_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text">
+            app:layout_constraintTop_toBottomOf="@+id/quote_text">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/ic_no_data"
             android:fontFamily="@font/love_ya_like_a_sister"
-            android:text="You havent created any watch dogs to monitor the time your wasting."
+            android:text="@string/no_dogs"
             android:textAlignment="center"
             android:textSize="20sp"
             android:visibility="gone"
@@ -68,10 +68,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red_pink"
-            android:drawableLeft="@drawable/ic_alarm_add_24"
+            android:drawableStart="@drawable/ic_alarm_add_24"
             android:paddingHorizontal="60dp"
             android:paddingVertical="16dp"
-            android:text="Create Watch Dog"
+            android:text="@string/create_watch_dog"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,6 +88,17 @@
             app:layout_constraintBottom_toTopOf="@+id/create_new_watch_dog_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/quote_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/love_ya_like_a_sister"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

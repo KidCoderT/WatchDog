@@ -14,17 +14,14 @@ import com.udacity.project5.watchdog.databinding.CreateWatchDogFragmentBinding
 class CreateWatchDogFragment : Fragment() {
 
     private lateinit var binding: CreateWatchDogFragmentBinding
-    private val viewModel: CreateWatchDogViewModel by viewModels()
     private var countdownTimerTimeInMinutes = 5
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = CreateWatchDogFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
-        binding.createWatchDogViewModel = viewModel
 
         // Setup Number Picker
         binding.minutesNumberPicker.minValue = 1
@@ -54,5 +51,4 @@ class CreateWatchDogFragment : Fragment() {
 
         return binding.root
     }
-
 }

@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.udacity.project5.watchdog.data.dto.Quote
 import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 
 @Dao
@@ -20,4 +21,16 @@ interface WatchDogsDao {
 
     @Query("DELETE FROM watch_dogs")
     suspend fun deleteAllDogs()
+}
+
+@Dao
+interface QuotesDao {
+    @Query("SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1")
+    fun getRandQuote(): Quote
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveAllQuotes(vararg quote: Quote)
+
+    @Query("DELETE FROM quotes")
+    suspend fun deleteAllQuotes()
 }

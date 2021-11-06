@@ -2,14 +2,15 @@ package com.udacity.project5.watchdog.data.local
 
 import android.content.Context
 import androidx.room.*
+import com.udacity.project5.watchdog.data.dto.Quote
 import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
-import java.time.LocalDateTime
 import java.util.*
 
-@Database(entities = [WatchDogsDataItem::class], version = 3, exportSchema = false)
+@Database(entities = [WatchDogsDataItem::class, Quote::class], version = 5, exportSchema = false)
 abstract class WatchDogsDatabase : RoomDatabase() {
 
     abstract fun watchDogsDao(): WatchDogsDao
+    abstract fun quotesDao(): QuotesDao
 
     companion object {
         @Volatile
@@ -25,7 +26,9 @@ abstract class WatchDogsDatabase : RoomDatabase() {
                     context.applicationContext,
                     WatchDogsDatabase::class.java,
                     "watch_dogs_db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

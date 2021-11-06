@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="createWatchDogViewModel"
-            type="com.udacity.project5.watchdog.createwatchdogscreen.CreateWatchDogViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/motionLayout"
         android:layout_width="match_parent"

@@ -1,35 +1,41 @@
 package com.udacity.project5.watchdog.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import com.udacity.project5.watchdog.data.dto.Quote
 import com.udacity.project5.watchdog.data.api.QuotesApi
+import com.udacity.project5.watchdog.data.dto.Quote
+import com.udacity.project5.watchdog.utils.parseQuotesJsonResult
 import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 import com.udacity.project5.watchdog.data.local.WatchDogsDatabase.Companion.getDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.await
 
 class WatchDogsGridListViewModel(application: Application) : AndroidViewModel(application) {
     private val watchDogsDao = getDatabase(application).watchDogsDao()
+    private val quotesDao = getDatabase(application).quotesDao()
     val allDogs: LiveData<List<WatchDogsDataItem>> = watchDogsDao.getAllDogs()
-
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String>
-        get() = _response
+    private var _dailyQuote = MutableLiveData<Quote?>()
+    val dailyQuote: LiveData<Quote?> get() = _dailyQuote
 
     init {
-        getQuotes()
-    }
-
-    private fun getQuotes() {
         viewModelScope.launch {
-            try {
-                val result = QuotesApi.retrofitService.getQuotes()
-                _response.value = "Success: ${result.await()}"
-            } catch (e: Exception) {
-                _response.value = "Failure: ${e.message}"
-            }
+            getAndSaveQuotes()
+            _dailyQuote = MutableLiveData(quotesDao.getRandQuote())
         }
     }
+
+    private suspend fun getAndSaveQuotes() {
+        withContext(Dispatchers.IO) {
+            val result = QuotesApi.retrofitService.getQuotes()
+            quotesDao.saveAllQuotes(*parseQuotesJsonResult(result.await()).toTypedArray())
+        }
+    }
+
+//    fun refreshQuote() {
+//        viewModelScope.launch {
+//            _dailyQuote.value = quotesDao.getRandQuote()
+//        }
+//    }
 }
