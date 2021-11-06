@@ -3,7 +3,7 @@ package com.udacity.project5.watchdog.main
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.udacity.project5.watchdog.data.api.Quote
+import com.udacity.project5.watchdog.data.dto.Quote
 import com.udacity.project5.watchdog.data.api.QuotesApi
 import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 import com.udacity.project5.watchdog.data.local.WatchDogsDatabase.Companion.getDatabase
@@ -25,11 +25,8 @@ class WatchDogsGridListViewModel(application: Application) : AndroidViewModel(ap
     private fun getQuotes() {
         viewModelScope.launch {
             try {
-                var listResult = QuotesApi.retrofitService.getQuotes()
-                listResult.await().results.forEach {
-                    Log.i("DataItem", (it as Quote).toString())
-                }
-                _response.value = "Success: ${listResult.await().results.size} Quotes retrieved"
+                val result = QuotesApi.retrofitService.getQuotes()
+                _response.value = "Success: ${result.await()}"
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
             }
