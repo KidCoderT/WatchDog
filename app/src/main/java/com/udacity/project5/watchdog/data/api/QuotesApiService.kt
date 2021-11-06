@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-private const val BASE_URL = "https://api.quotable.io/"
+private const val BASE_URL = "https://quotable.io/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -21,7 +21,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface QuotesApiService {
-    @GET("quotes?tags=famous-quotes,inspirational&page=1")
+    @GET("/quotes?tags=famous-quotes,inspirational&page=1")
     fun getQuotes():
             Call<QuotesList>
 }

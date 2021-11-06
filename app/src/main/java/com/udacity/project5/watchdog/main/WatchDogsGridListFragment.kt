@@ -23,6 +23,8 @@ class WatchDogsGridListFragment : Fragment() {
         binding = WatchDogsGridListFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
+        binding.url = "https://images.unsplash.com/photo-1635863762520-d952874f4d1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80"
+
         binding.createNewWatchDogBtn.setOnClickListener {
             findNavController().navigate(
                 WatchDogsGridListFragmentDirections.actionWatchDogsGridListFragmentToCreateWatchDogFragment()
