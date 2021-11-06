@@ -9,7 +9,7 @@ import com.udacity.project5.watchdog.data.dto.WatchDogsDataItem
 
 @Dao
 interface WatchDogsDao {
-    @Query("SELECT * FROM watch_dogs")
+    @Query("SELECT * FROM watch_dogs ORDER BY doc DESC")
     fun getAllDogs(): LiveData<List<WatchDogsDataItem>>
 
     @Query("SELECT * FROM watch_dogs WHERE dog_id = :dogId")

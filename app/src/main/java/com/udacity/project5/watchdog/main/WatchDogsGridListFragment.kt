@@ -29,11 +29,8 @@ class WatchDogsGridListFragment : Fragment() {
             )
         }
 
-        viewModel.allDogs.observe(viewLifecycleOwner, {
-            Log.i("DataHasChanged", "Here is the newList")
-            for (dataItem in it) {
-                Log.i("DataItem", dataItem.toString())
-            }
+        viewModel.response.observe(viewLifecycleOwner, {
+            Log.i("Response", it)
         })
 
         val manager = GridLayoutManager(activity, 4)
