@@ -22,7 +22,7 @@ class WatchDogsGridListViewModel(application: Application) : AndroidViewModel(ap
     init {
         viewModelScope.launch {
             getAndSaveQuotes()
-            _dailyQuote = MutableLiveData(quotesDao.getRandQuote())
+            refreshQuote()
         }
     }
 
@@ -33,9 +33,9 @@ class WatchDogsGridListViewModel(application: Application) : AndroidViewModel(ap
         }
     }
 
-//    fun refreshQuote() {
-//        viewModelScope.launch {
-//            _dailyQuote.value = quotesDao.getRandQuote()
-//        }
-//    }
+    suspend fun refreshQuote() {
+        withContext(Dispatchers.IO) {
+            _dailyQuote.value = quotesDao.getRandQuote()
+        }
+    }
 }
