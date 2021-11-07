@@ -34,6 +34,7 @@
 1. first version should have ability to create timer then run it repeatedly even in the background with notifications popping(2/11/2021)
 2. second version should create WatchDogsFragment Screen and make the navigation working (no recycler view, no db)(3/11/2021)
 3. third version should create the db and recycler view and show them. Also there should be feature for saving the watchdog to the database(4/11/2021)
-4. fourth and final version has navigation animations(4/11/2021)
+4. fourth and final version has navigation animations & motion layout animation(5/11/2021)
+5. gets Data/Quotes from other source and shows an image with glide(7/11/2021)
 
 > Note: link for the quotes api dov is this: https://github.com/lukePeavey/quotable
