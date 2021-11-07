@@ -35,7 +35,7 @@ class WatchDogsGridListViewModel(application: Application) : AndroidViewModel(ap
 
     suspend fun refreshQuote() {
         withContext(Dispatchers.IO) {
-            _dailyQuote.value = quotesDao.getRandQuote()
+            _dailyQuote.postValue(quotesDao.getRandQuote())
         }
     }
 }
